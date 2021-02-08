@@ -5,6 +5,7 @@ const mapbox = require('./utls/mapbox.js')
 const forecast = require('./utls/weatherstack.js')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 // Define paths for Express Config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -48,7 +49,7 @@ app.get('/help', (req, res) => {
     })
 })
 
-// not sure what this if for yet
+// not sure what this if for yet (gets the address from the request and loads the weather)
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
         return res.send({
@@ -119,6 +120,6 @@ app.get('*', (req, res) => {
 })
 
 // Shows that the srever is runing
-app.listen(3000, () => {
-    console.log('Server is running on port 3000.')
+app.listen(port, () => {
+    console.log('Server is running on port ' + port +'.')
 })
